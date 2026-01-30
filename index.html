@@ -5,7 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Hero Jump: City Nights 🎮</title>
     
+    <!-- GameMonetize SDK -->
+    <script src="https://s3.gmgn.com/html5games/v7/gmloader.js"></script>
+    
     <style>
+        .powerup-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 20;
+            pointer-events: none;
+        }
+        
+        .powerup-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .powerup-timer {
+            position: absolute;
+            bottom: -15px;
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 2px 5px;
+            border-radius: 10px;
+            min-width: 25px;
+            text-align: center;
+        }
+        
+        .shield-icon {
+            background: linear-gradient(145deg, #2196F3, #0D47A1);
+            border: 2px solid #64B5F6;
+        }
+        
+        .doublepoints-icon {
+            background: linear-gradient(145deg, #FF9800, #E65100);
+            border: 2px solid #FFB74D;
+        }
+        
+        .rocketshoot-icon {
+            background: linear-gradient(145deg, #FF5252, #D32F2F);
+            border: 2px solid #FF8A80;
+        }
+        
+        .powerup-collect-effect {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 50;
+            animation: collectAnimation 0.8s ease-out forwards;
+        }
+        
+        @keyframes collectAnimation {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        
+        /* STYLE LAMA */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
         :root {
             --vh: 1vh;
@@ -311,6 +382,125 @@
             z-index: 2000;
             color: white;
         }
+        
+        /* START SCREEN MODAL untuk PC - SIZE LEBIH KECIL */
+        @media (min-width: 769px) {
+            .start-modal { 
+                background: white; 
+                padding: 25px; /* dikurangi dari 40px */
+                border-radius: 20px; /* dikurangi dari 30px */
+                text-align: center; 
+                border: 6px solid #FF9800; /* dikurangi dari 8px */
+                width: 85%; 
+                max-width: 400px; /* dikurangi dari 500px */
+                animation: popIn 0.5s ease-out;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* dikurangi shadow */
+            }
+            
+            #btn-start-game { 
+                background: linear-gradient(145deg, #4CAF50, #2E7D32); 
+                color: white; 
+                border: none; 
+                padding: 15px 35px; /* dikurangi dari 20px 50px */
+                font-size: 20px; /* dikurangi dari 24px */
+                border-radius: 50px; 
+                cursor: pointer; 
+                font-weight: bold; 
+                margin-top: 20px; /* dikurangi dari 25px */
+                box-shadow: 0 6px 0 #1B5E20; /* dikurangi dari 8px */
+                transition: all 0.2s;
+                touch-action: manipulation;
+                min-width: 180px; /* dikurangi dari 200px */
+            }
+            
+            #btn-start-game:hover { 
+                transform: translateY(-2px); 
+                box-shadow: 0 8px 0 #1B5E20; 
+            }
+            
+            #btn-start-game:active { 
+                transform: translateY(2px); 
+                box-shadow: 0 4px 0 #1B5E20; 
+            }
+            
+            /* Title lebih kecil */
+            .start-modal h1 {
+                font-size: 36px !important; /* dikurangi dari 48px */
+                margin: 0 0 8px 0 !important;
+            }
+            
+            .start-modal h2 {
+                font-size: 24px !important; /* dikurangi dari 32px */
+                margin: 0 0 15px 0 !important;
+            }
+            
+            /* Power-up section lebih kecil */
+            .powerup-info-section {
+                background: rgb(240, 248, 255) !important;
+                border-radius: 12px !important; /* dikurangi dari 15px */
+                border: 2px dashed rgb(76, 175, 80) !important; /* dikurangi dari 3px */
+                margin: 15px 0 !important; /* dikurangi dari 20px */
+                padding: 15px !important; /* dikurangi dari 20px */
+            }
+            
+            .powerup-info-section p:first-child {
+                font-size: 16px !important; /* dikurangi dari 20px */
+                margin-bottom: 12px !important;
+            }
+            
+            .powerup-icon-item {
+                text-align: center;
+                flex: 1;
+            }
+            
+            .powerup-icon-display {
+                align-items: center; 
+                background: linear-gradient(145deg, rgb(33, 150, 243), rgb(13, 71, 161)); 
+                border-radius: 50%; 
+                color: white; 
+                display: flex; 
+                height: 35px !important; /* dikurangi dari 40px */
+                justify-content: center; 
+                margin: 0px auto 8px !important; /* dikurangi margin */
+                width: 35px !important; /* dikurangi dari 40px */
+                font-size: 16px !important; /* dikurangi dari 18px */
+            }
+            
+            .powerup-icon-label {
+                font-size: 12px !important; /* dikurangi dari 14px */
+                font-weight: bold;
+            }
+            
+            /* Controls section lebih kecil */
+            .controls-section {
+                margin-top: 20px !important; /* dikurangi dari 25px */
+                padding: 15px !important; /* dikurangi dari 20px */
+                background: #f9f9f9;
+                border-radius: 12px; /* dikurangi dari 15px */
+                border: 2px solid #ddd;
+            }
+            
+            .controls-section p:first-child {
+                font-size: 16px !important; /* dikurangi dari 18px */
+                margin-bottom: 12px !important;
+            }
+            
+            .key { 
+                display: inline-block; 
+                background: linear-gradient(145deg, #666, #333); 
+                color: white; 
+                padding: 4px 10px; /* dikurangi dari 5px 12px */
+                border-radius: 6px; /* dikurangi dari 8px */
+                margin: 0 6px; /* dikurangi dari 8px */
+                font-family: 'Courier New', monospace;
+                font-size: 13px; /* dikurangi dari 14px */
+                box-shadow: 0 2px 0 #222; /* dikurangi dari 3px */
+                min-width: 35px; /* dikurangi dari 40px */
+                text-align: center;
+            }
+        }
+        
+        /* Untuk mobile, tetap guna style lama */
         .start-modal { 
             background: white; 
             padding: 30px; 
@@ -359,7 +549,7 @@
             font-family: monospace;
         }
         
-        /* Mobile optimization - FIXED */
+        /* Mobile optimization */
         @media (max-width: 768px) {
             #controls-container {
                 bottom: 20px;
@@ -387,6 +577,11 @@
             }
             #power-container {
                 margin-top: 8px;
+            }
+            .powerup-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 18px;
             }
         }
         @media (max-width: 480px) {
@@ -421,9 +616,13 @@
                 padding: 20px; 
                 margin: 10px;
             }
+            .powerup-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+            }
         }
         
-        /* Extra small devices */
         @media (max-height: 600px) {
             #controls-container {
                 bottom: 10px;
@@ -442,6 +641,10 @@
                 padding: 5px 15px;
                 font-size: 15px;
             }
+            .powerup-indicator {
+                top: 10px;
+                right: 10px;
+            }
         }
     </style>
 </head>
@@ -458,7 +661,26 @@
         <div class="start-modal">
             <h1 style="margin: 0; color: #FF9800; font-size: 32px;">HERO JUMP</h1>
             <h2 style="margin: 10px 0; color: #333; font-size: 24px;">City Nights</h2>
-            <p style="color: #666; margin: 15px 0;">Jump Your Way to the Top of the City!</p>
+            
+          <!--Power-up Info-->
+            <div style="background: rgb(240, 248, 255); border-radius: 10px; border: 2px dashed rgb(76, 175, 80); margin: 15px 0px; padding: 10px;">
+                <p style="color: #333333; font-size: 16px; font-weight: bold; margin: 0px 0px 10px;">🔥 RARE POWER-UPS! 🔥</p>
+                <div style="display: flex; justify-content: space-around; margin-bottom: 10px;">
+                    <div style="text-align: center;">
+                        <div style="align-items: center; background: linear-gradient(145deg, rgb(33, 150, 243), rgb(13, 71, 161)); border-radius: 50%; color: white; display: flex; height: 30px; justify-content: center; margin: 0px auto 5px; width: 30px;">🛡️</div>
+                        <div style="font-size: 11px;"><span style="color: #2b00fe;">SHIELD</span></div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="align-items: center; background: linear-gradient(145deg, rgb(255, 152, 0), rgb(230, 81, 0)); border-radius: 50%; color: white; display: flex; height: 30px; justify-content: center; margin: 0px auto 5px; width: 30px;">2×</div>
+                        <div style="font-size: 11px;"><span style="color: #2b00fe;">2× POINTS</span></div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="align-items: center; background: linear-gradient(145deg, rgb(255, 82, 82), rgb(211, 47, 47)); border-radius: 50%; color: white; display: flex; height: 30px; justify-content: center; margin: 0px auto 5px; width: 30px;">🚀</div>
+                        <div style="font-size: 11px;"><span style="color: #2b00fe;">ROCKET&nbsp;</span></div><div style="font-size: 11px;"><span style="color: #2b00fe;">SHOOTER</span></div>
+                    </div>
+                </div>
+                <p style="color: #666666; font-size: 12px; font-style: italic; margin: 0px;">Very rare - appears occasionally!</p>
+            </div>
             
             <div class="local-highscore" id="local-best-score">
                 🏆 Your Best: <span class="hs-highlight" id="local-best-score-value">0</span>
@@ -479,10 +701,15 @@
             </div>
             
             <button id="btn-start-game">START GAME 🚀</button>
+            
+            <!-- TIDAK ADA TOMBOL ADS DI SINI - SUDAH DIHAPUS -->
         </div>
     </div>
 
     <div id="game-wrapper">
+        <!-- Power-up Indicators -->
+        <div id="powerup-indicator" class="powerup-indicator"></div>
+        
         <!-- Game UI -->
         <div id="ui">
             <div id="score-container">
@@ -522,6 +749,14 @@
                     <button id="btn-resume" style="background: linear-gradient(145deg, #4CAF50, #2E7D32); color: white; border: none; padding: 12px 25px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #2E7D32;">RESUME</button>
                     <button id="btn-restart" style="background: linear-gradient(145deg, #FF9800, #E65100); color: white; border: none; padding: 12px 25px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #E65100;">RESTART</button>
                 </div>
+                
+                <!-- Tombol GameMonetize di Pause Screen -->
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed #ddd;">
+                    <p style="color: #666; font-size: 14px; margin-bottom: 10px;">Support the game:</p>
+                    <button id="btn-pause-ads" style="background: linear-gradient(145deg, #FF9800, #E65100); color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #E65100; width: 100%;">
+                        Watch Ad
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -537,6 +772,19 @@
                 </div>
                 
                 <button id="btn-play-again">PLAY AGAIN 🚀</button>
+                
+                <!-- Tombol GameMonetize di Game Over -->
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed #ddd;">
+                    <p style="color: #666; font-size: 14px; margin-bottom: 10px;">Continue with bonus?</p>
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button id="btn-continue-with-ad" style="background: linear-gradient(145deg, #4CAF50, #2E7D32); color: white; border: none; padding: 12px 20px; font-size: 14px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #2E7D32; flex: 1;">
+                            Watch Ad to Continue
+                        </button>
+                        <button id="btn-reward-continue" style="background: linear-gradient(145deg, #2196F3, #0D47A1); color: white; border: none; padding: 12px 20px; font-size: 14px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #0D47A1; flex: 1;">
+                            Get 2× Points
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -545,6 +793,640 @@
     </div>
 
 <script>
+    // =============================================
+    // GAMEMONETIZE SDK INITIALIZATION
+    // =============================================
+    let gameMonetizeInstance = null;
+    let gameID = "bjmmlm9ug876ddnboospf4cambxdvcbx";
+    
+    async function initGameMonetize() {
+        console.log("Initializing GameMonetize SDK...");
+        
+        try {
+            // Wait for SDK to load
+            if (typeof gmloader === 'undefined') {
+                console.warn("GameMonetize SDK not loaded, retrying...");
+                setTimeout(initGameMonetize, 1000);
+                return;
+            }
+            
+            // Initialize SDK
+            gameMonetizeInstance = gmloader(gameID, {
+                onEvent: function(event) {
+                    console.log("GameMonetize Event:", event);
+                    
+                    switch(event.name) {
+                        case "SDK_READY":
+                            console.log("GameMonetize SDK Ready!");
+                            break;
+                            
+                        case "SDK_ERROR":
+                            console.error("GameMonetize SDK Error:", event.data);
+                            break;
+                            
+                        case "AD_STARTED":
+                            console.log("Ad started");
+                            isPaused = true;
+                            showAdOverlay(true);
+                            break;
+                            
+                        case "AD_FINISHED":
+                            console.log("Ad finished");
+                            isPaused = false;
+                            showAdOverlay(false);
+                            break;
+                            
+                        case "AD_ERROR":
+                            console.error("Ad error:", event.data);
+                            showAdOverlay(false);
+                            alert("Ad failed to load. Please try again.");
+                            break;
+                            
+                        case "REWARDED_WATCH_COMPLETE":
+                            console.log("Rewarded ad completed");
+                            handleRewardedComplete(event.data);
+                            break;
+                    }
+                }
+            });
+            
+            console.log("GameMonetize initialized successfully");
+            
+        } catch (error) {
+            console.error("Failed to initialize GameMonetize:", error);
+        }
+    }
+    
+    function showAdOverlay(show) {
+        const overlay = document.getElementById('ad-overlay');
+        if (show) {
+            // Create overlay if it doesn't exist
+            if (!overlay) {
+                const newOverlay = document.createElement('div');
+                newOverlay.id = 'ad-overlay';
+                newOverlay.style.position = 'absolute';
+                newOverlay.style.top = '0';
+                newOverlay.style.left = '0';
+                newOverlay.style.width = '100%';
+                newOverlay.style.height = '100%';
+                newOverlay.style.background = 'rgba(0,0,0,0.8)';
+                newOverlay.style.zIndex = '9999';
+                newOverlay.style.display = 'flex';
+                newOverlay.style.flexDirection = 'column';
+                newOverlay.style.justifyContent = 'center';
+                newOverlay.style.alignItems = 'center';
+                newOverlay.style.color = 'white';
+                newOverlay.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <div class="loader" style="border-color: #FF9800;"></div>
+                        <h2>Ad is Loading...</h2>
+                        <p>Please wait</p>
+                    </div>
+                `;
+                wrapper.appendChild(newOverlay);
+            } else {
+                overlay.style.display = 'flex';
+            }
+        } else {
+            if (overlay) {
+                overlay.style.display = 'none';
+            }
+        }
+    }
+    
+    function showAd() {
+        if (!gameMonetizeInstance) {
+            console.warn("GameMonetize not initialized");
+            alert("Ad system not ready yet. Please wait.");
+            return;
+        }
+        
+        try {
+            gameMonetizeInstance.showAd();
+        } catch (error) {
+            console.error("Error showing ad:", error);
+            alert("Failed to show ad. Please try again.");
+        }
+    }
+    
+    function showRewardedAd() {
+        if (!gameMonetizeInstance) {
+            console.warn("GameMonetize not initialized");
+            alert("Rewarded ad system not ready yet. Please wait.");
+            return;
+        }
+        
+        try {
+            gameMonetizeInstance.showRewardedAd();
+        } catch (error) {
+            console.error("Error showing rewarded ad:", error);
+            alert("Failed to load rewarded ad. Please try again.");
+        }
+    }
+    
+    function handleRewardedComplete(data) {
+        console.log("Rewarded ad completed with data:", data);
+        
+        // Berikan reward kepada pemain
+        if (gameActive) {
+            // Aktifkan double points selama 30 detik
+            activePowerUps.doublePoints.active = true;
+            activePowerUps.doublePoints.timer = 30;
+            
+            // Tampilkan notifikasi
+            showRewardNotification("2× POINTS ACTIVATED FOR 30 SECONDS!");
+            
+            // Tambahkan 50 poin bonus
+            score += 50;
+            updateScoreDisplay();
+            showScorePop(canvas.width/2, canvas.height/2, 50);
+            
+            if (soundEnabled) playSfx(800, 'sine', 0.3, 0.2);
+        } else if (gameOverScreen.style.display === "flex") {
+            // Jika di game over screen, beri kesempatan lanjut
+            continueAfterGameOver();
+        }
+    }
+    
+    function showRewardNotification(message) {
+        const notif = document.createElement('div');
+        notif.style.position = 'absolute';
+        notif.style.top = '30%';
+        notif.style.left = '50%';
+        notif.style.transform = 'translate(-50%, -50%)';
+        notif.style.color = '#4CAF50';
+        notif.style.fontSize = '24px';
+        notif.style.fontWeight = 'bold';
+        notif.style.textShadow = '2px 2px 0px rgba(0,0,0,0.5)';
+        notif.style.zIndex = '9999';
+        notif.style.pointerEvents = 'none';
+        notif.style.textAlign = 'center';
+        notif.style.background = 'rgba(0,0,0,0.7)';
+        notif.style.padding = '15px 25px';
+        notif.style.borderRadius = '15px';
+        notif.style.border = '3px solid #4CAF50';
+        notif.innerText = message;
+        notif.style.animation = 'floatUp 2s ease-out forwards';
+        
+        wrapper.appendChild(notif);
+        
+        setTimeout(() => {
+            if (notif.parentNode) {
+                notif.parentNode.removeChild(notif);
+            }
+        }, 2000);
+    }
+    
+    function continueAfterGameOver() {
+        // Lanjutkan permainan dengan 50% score
+        const continueScore = Math.floor(score * 0.5);
+        score = continueScore;
+        
+        // Reset game state
+        gameActive = true;
+        gameOverScreen.style.display = "none";
+        
+        // Reset player position
+        if (player) {
+            player.x = canvas.width * 0.15;
+            player.y = canvas.height - (unit * 4);
+            player.vx = 0;
+            player.vy = 0;
+            player.onGround = false;
+        }
+        
+        // Tampilkan notifikasi
+        showRewardNotification(`CONTINUE WITH ${continueScore} POINTS!`);
+        
+        // Update score display
+        updateScoreDisplay();
+        
+        // Mulai game loop kembali
+        gameLoop();
+        
+        if (musicEnabled) {
+            playBGM();
+        }
+    }
+    
+    // =============================================
+    // POWER-UP SYSTEM - VERSI SANGAT JARANG (0.5%)
+    // =============================================
+    let powerUps = [];
+    let activePowerUps = {
+        shield: { active: false, timer: 0, duration: 10 },
+        doublePoints: { active: false, timer: 0, duration: 15 },
+        rocketShoot: { active: false, timer: 0, duration: 12 }
+    };
+    
+    const POWERUP_TYPES = {
+        SHIELD: 'shield',
+        DOUBLE_POINTS: 'doublePoints',
+        ROCKET_SHOOT: 'rocketShoot'
+    };
+    
+    let lastPowerUpTime = 0;
+    const MIN_POWERUP_INTERVAL = 15000;
+    
+    let playerRockets = [];
+    let lastRocketShot = 0;
+    const ROCKET_COOLDOWN = 30;
+    
+    function createPowerUp() {
+        if (!gameActive || isPaused) return;
+        
+        const currentTime = Date.now();
+        
+        if (currentTime - lastPowerUpTime < MIN_POWERUP_INTERVAL) {
+            return;
+        }
+        
+        if (powerUps.length > 0) {
+            return;
+        }
+        
+        if (score > 20 && Math.random() > 0.995) {
+            const types = [POWERUP_TYPES.SHIELD, POWERUP_TYPES.DOUBLE_POINTS, POWERUP_TYPES.ROCKET_SHOOT];
+            const type = types[Math.floor(Math.random() * types.length)];
+            
+            const px = canvas.width + 50;
+            const py = 150 + Math.random() * (canvas.height - 300);
+            
+            powerUps.push({
+                x: px,
+                y: py,
+                size: 25,
+                type: type,
+                angle: 0,
+                floatOffset: Math.random() * Math.PI * 2,
+                collected: false
+            });
+            
+            lastPowerUpTime = currentTime;
+            
+            if (soundEnabled) playSfx(600, 'sine', 0.2, 0.08);
+        }
+    }
+    
+    function updatePowerUps() {
+        if (!gameActive || isPaused) return;
+        
+        powerUps.forEach((p, index) => {
+            p.x -= 2;
+            p.angle += 0.05;
+            p.y += Math.sin(frameCount * 0.05 + p.floatOffset) * 2;
+            
+            if (player && !p.collected) {
+                const distance = Math.sqrt(
+                    Math.pow(player.x + player.w/2 - p.x, 2) + 
+                    Math.pow(player.y + player.h/2 - p.y, 2)
+                );
+                
+                if (distance < (player.w/2 + p.size)) {
+                    p.collected = true;
+                    collectPowerUp(p);
+                    
+                    createCollectEffect(p.x, p.y, p.type);
+                    
+                    setTimeout(() => {
+                        const idx = powerUps.indexOf(p);
+                        if (idx > -1) powerUps.splice(idx, 1);
+                    }, 300);
+                }
+            }
+            
+            if (p.x < -50) {
+                powerUps.splice(index, 1);
+            }
+        });
+        
+        updateActivePowerUps();
+        updatePowerUpIndicators();
+        updatePlayerRockets();
+    }
+    
+    function collectPowerUp(powerUp) {
+        if (soundEnabled) playSfx(800, 'sine', 0.3, 0.15);
+        
+        switch(powerUp.type) {
+            case POWERUP_TYPES.SHIELD:
+                activePowerUps.shield.active = true;
+                activePowerUps.shield.timer = activePowerUps.shield.duration;
+                break;
+                
+            case POWERUP_TYPES.DOUBLE_POINTS:
+                activePowerUps.doublePoints.active = true;
+                activePowerUps.doublePoints.timer = activePowerUps.doublePoints.duration;
+                break;
+                
+            case POWERUP_TYPES.ROCKET_SHOOT:
+                activePowerUps.rocketShoot.active = true;
+                activePowerUps.rocketShoot.timer = activePowerUps.rocketShoot.duration;
+                lastRocketShot = frameCount;
+                break;
+        }
+        
+        showPowerUpNotification(powerUp.type);
+    }
+    
+    function updateActivePowerUps() {
+        if (activePowerUps.shield.active) {
+            activePowerUps.shield.timer -= 1/60;
+            if (activePowerUps.shield.timer <= 0) {
+                activePowerUps.shield.active = false;
+            }
+        }
+        
+        if (activePowerUps.doublePoints.active) {
+            activePowerUps.doublePoints.timer -= 1/60;
+            if (activePowerUps.doublePoints.timer <= 0) {
+                activePowerUps.doublePoints.active = false;
+            }
+        }
+        
+        if (activePowerUps.rocketShoot.active) {
+            activePowerUps.rocketShoot.timer -= 1/60;
+            if (activePowerUps.rocketShoot.timer <= 0) {
+                activePowerUps.rocketShoot.active = false;
+            }
+            
+            if (frameCount - lastRocketShot > ROCKET_COOLDOWN) {
+                shootPlayerRocket();
+                lastRocketShot = frameCount;
+            }
+        }
+    }
+    
+    function shootPlayerRocket() {
+        if (!player || !gameActive || isPaused) return;
+        
+        playerRockets.push({
+            x: player.x + player.w,
+            y: player.y + player.h/2 - 10,
+            w: 30,
+            h: 15,
+            speed: 8,
+            color: '#FF5252'
+        });
+        
+        if (soundEnabled) playSfx(800, 'square', 0.1, 0.1);
+        
+        for(let i = 0; i < 8; i++) {
+            playerAnimation.trailParticles.push({
+                x: player.x + player.w,
+                y: player.y + player.h/2,
+                size: Math.random() * 2 + 1,
+                life: 15,
+                vx: Math.random() * 2 + 1,
+                vy: (Math.random() - 0.5) * 2,
+                color: '#FF5252'
+            });
+        }
+    }
+    
+    function updatePlayerRockets() {
+        if (!gameActive || isPaused) return;
+        
+        for (let i = playerRockets.length - 1; i >= 0; i--) {
+            const rocket = playerRockets[i];
+            rocket.x += rocket.speed;
+            
+            for (let j = rockets.length - 1; j >= 0; j--) {
+                const enemyRocket = rockets[j];
+                
+                if (rocket.x < enemyRocket.x + enemyRocket.w &&
+                    rocket.x + rocket.w > enemyRocket.x &&
+                    rocket.y < enemyRocket.y + enemyRocket.h &&
+                    rocket.y + rocket.h > enemyRocket.y) {
+                    
+                    createExplosion(rocket.x, rocket.y + rocket.h/2);
+                    playerRockets.splice(i, 1);
+                    rockets.splice(j, 1);
+                    
+                    score += 5;
+                    updateScoreDisplay();
+                    showScorePop(rocket.x, rocket.y, 5);
+                    
+                    break;
+                }
+            }
+            
+            if (rocket.x > canvas.width + 50) {
+                playerRockets.splice(i, 1);
+            }
+        }
+    }
+    
+    function createExplosion(x, y) {
+        if (soundEnabled) playSfx(400, 'sawtooth', 0.3, 0.15);
+        
+        for(let i = 0; i < 15; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 4 + 2;
+            playerAnimation.trailParticles.push({
+                x: x,
+                y: y,
+                size: Math.random() * 3 + 2,
+                life: 25,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                color: ['#FF5252', '#FF9800', '#FFD700'][Math.floor(Math.random() * 3)]
+            });
+        }
+    }
+    
+    function updatePowerUpIndicators() {
+        const indicator = document.getElementById('powerup-indicator');
+        if (!indicator) return;
+        
+        indicator.innerHTML = '';
+        
+        if (activePowerUps.shield.active) {
+            const div = document.createElement('div');
+            div.className = 'powerup-icon shield-icon';
+            div.innerHTML = '🛡️';
+            const timer = document.createElement('div');
+            timer.className = 'powerup-timer';
+            timer.innerText = Math.ceil(activePowerUps.shield.timer);
+            div.appendChild(timer);
+            indicator.appendChild(div);
+        }
+        
+        if (activePowerUps.doublePoints.active) {
+            const div = document.createElement('div');
+            div.className = 'powerup-icon doublepoints-icon';
+            div.innerHTML = '2×';
+            const timer = document.createElement('div');
+            timer.className = 'powerup-timer';
+            timer.innerText = Math.ceil(activePowerUps.doublePoints.timer);
+            div.appendChild(timer);
+            indicator.appendChild(div);
+        }
+        
+        if (activePowerUps.rocketShoot.active) {
+            const div = document.createElement('div');
+            div.className = 'powerup-icon rocketshoot-icon';
+            div.innerHTML = '🚀';
+            const timer = document.createElement('div');
+            timer.className = 'powerup-timer';
+            timer.innerText = Math.ceil(activePowerUps.rocketShoot.timer);
+            div.appendChild(timer);
+            indicator.appendChild(div);
+        }
+    }
+    
+    function createCollectEffect(x, y, type) {
+        const effect = document.createElement('div');
+        effect.className = 'powerup-collect-effect';
+        
+        switch(type) {
+            case POWERUP_TYPES.SHIELD:
+                effect.style.background = 'radial-gradient(circle, #2196F3, #0D47A1)';
+                effect.style.boxShadow = '0 0 20px #2196F3';
+                break;
+            case POWERUP_TYPES.DOUBLE_POINTS:
+                effect.style.background = 'radial-gradient(circle, #FF9800, #E65100)';
+                effect.style.boxShadow = '0 0 20px #FF9800';
+                break;
+            case POWERUP_TYPES.ROCKET_SHOOT:
+                effect.style.background = 'radial-gradient(circle, #FF5252, #D32F2F)';
+                effect.style.boxShadow = '0 0 20px #FF5252';
+                break;
+        }
+        
+        effect.style.left = (x - 30) + 'px';
+        effect.style.top = (y - 30) + 'px';
+        
+        wrapper.appendChild(effect);
+        
+        setTimeout(() => {
+            if (effect.parentNode) {
+                effect.parentNode.removeChild(effect);
+            }
+        }, 800);
+    }
+    
+    function showPowerUpNotification(type) {
+        let message = '';
+        let color = '';
+        
+        switch(type) {
+            case POWERUP_TYPES.SHIELD:
+                message = 'RARE SHIELD!';
+                color = '#2196F3';
+                break;
+            case POWERUP_TYPES.DOUBLE_POINTS:
+                message = 'RARE 2× POINTS!';
+                color = '#FF9800';
+                break;
+            case POWERUP_TYPES.ROCKET_SHOOT:
+                message = 'ROCKET SHOOTER!';
+                color = '#FF5252';
+                break;
+        }
+        
+        const notif = document.createElement('div');
+        notif.style.position = 'absolute';
+        notif.style.top = '50%';
+        notif.style.left = '50%';
+        notif.style.transform = 'translate(-50%, -50%)';
+        notif.style.color = color;
+        notif.style.fontSize = '28px';
+        notif.style.fontWeight = 'bold';
+        notif.style.textShadow = '2px 2px 0px rgba(0,0,0,0.5)';
+        notif.style.zIndex = '1000';
+        notif.style.pointerEvents = 'none';
+        notif.innerText = message;
+        notif.style.animation = 'floatUp 1.5s ease-out forwards';
+        
+        wrapper.appendChild(notif);
+        
+        setTimeout(() => {
+            if (notif.parentNode) {
+                notif.parentNode.removeChild(notif);
+            }
+        }, 1500);
+    }
+    
+    function drawPowerUps() {
+        if (!ctx) return;
+        
+        powerUps.forEach(p => {
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.angle);
+            
+            ctx.globalAlpha = 0.6 + Math.sin(frameCount * 0.2) * 0.4;
+            ctx.fillStyle = p.type === POWERUP_TYPES.SHIELD ? '#2196F3' : 
+                           p.type === POWERUP_TYPES.DOUBLE_POINTS ? '#FF9800' : '#FF5252';
+            ctx.beginPath();
+            ctx.arc(0, 0, p.size + 15, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.globalAlpha = 1;
+            
+            switch(p.type) {
+                case POWERUP_TYPES.SHIELD:
+                    ctx.fillStyle = '#2196F3';
+                    ctx.beginPath();
+                    ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    ctx.strokeStyle = '#64B5F6';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, p.size + 3, 0, Math.PI * 2);
+                    ctx.stroke();
+                    
+                    ctx.fillStyle = 'white';
+                    ctx.font = '20px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('🛡️', 0, 0);
+                    break;
+                    
+                case POWERUP_TYPES.DOUBLE_POINTS:
+                    ctx.fillStyle = '#FF9800';
+                    ctx.beginPath();
+                    ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    ctx.strokeStyle = '#FFB74D';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, p.size + 3, 0, Math.PI * 2);
+                    ctx.stroke();
+                    
+                    ctx.fillStyle = 'white';
+                    ctx.font = 'bold 24px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('2×', 0, 0);
+                    break;
+                    
+                case POWERUP_TYPES.ROCKET_SHOOT:
+                    ctx.fillStyle = '#FF5252';
+                    ctx.beginPath();
+                    ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    ctx.strokeStyle = '#FF8A80';
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, p.size + 3, 0, Math.PI * 2);
+                    ctx.stroke();
+                    
+                    ctx.fillStyle = 'white';
+                    ctx.font = '20px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('🚀', 0, 0);
+                    break;
+            }
+            
+            ctx.restore();
+        });
+    }
+    
     // =============================================
     // VIEWPORT HEIGHT FIX FOR MOBILE
     // =============================================
@@ -566,9 +1448,10 @@
     
     function initLocalHighscore() {
         const loadingText = document.getElementById("loading-text");
-        loadingText.innerText = "Loading game...";
+        if (loadingText) {
+            loadingText.innerText = "Loading game...";
+        }
         
-        // Load best score from localStorage
         loadLocalBestScore();
         
         setTimeout(() => {
@@ -611,7 +1494,6 @@
             finalHighscoreElement.innerText = localBestScore;
         }
         
-        // Update in-game highscore display
         const highscoreElement = document.getElementById("highscore");
         if (highscoreElement) {
             highscoreElement.innerText = localBestScore;
@@ -625,7 +1507,6 @@
             saveLocalBestScore(score);
         }
         
-        // Update game over screen
         const finalHighscoreElement = document.getElementById("final-highscore-value");
         if (finalHighscoreElement) {
             finalHighscoreElement.innerText = localBestScore;
@@ -633,7 +1514,7 @@
     }
     
     function showHighscoreInfo() {
-        alert(`🏆 YOUR HIGHSCORE: ${localBestScore}\n\nKeep playing to beat your record!\n\nGame controls:\n- SPACE/CLICK: Charge & Jump\n- P: Pause Game\n- M: Toggle Music\n- S: Toggle Sound`);
+        alert(`🏆 YOUR HIGHSCORE: ${localBestScore}\n\nRare Power-ups:\n🛡️ Shield - Immune to rockets (10s) \n 2× Points - Double score (15s)\n🚀 Rocket Shooter - Auto shoot enemy rockets (12s)\n\nPower-ups appear very rarely!\n\nGame controls:\n- SPACE/CLICK: Charge & Jump\n- P: Pause Game\n- M: Toggle Music\n- S: Toggle Sound`);
     }
     
     document.getElementById("btn-start-game").onclick = () => {
@@ -644,7 +1525,7 @@
     document.getElementById("btn-highscore").onclick = showHighscoreInfo;
     
     // =============================================
-    // GAME VARIABLES & STATE (TIDAK DIUBAH)
+    // GAME VARIABLES & STATE
     // =============================================
     const canvas = document.getElementById("gameCanvas");
     const ctx = canvas.getContext("2d");
@@ -691,7 +1572,7 @@
     };
     
     // =============================================
-    // AUDIO FUNCTIONS (TIDAK DIUBAH)
+    // AUDIO FUNCTIONS
     // =============================================
     function initAudio() {
         try {
@@ -748,7 +1629,7 @@
     }
     
     // =============================================
-    // SOUND & MUSIC CONTROLS (TIDAK DIUBAH)
+    // SOUND & MUSIC CONTROLS
     // =============================================
     function toggleSound() {
         soundEnabled = !soundEnabled;
@@ -825,7 +1706,7 @@
     }
     
     // =============================================
-    // PAUSE CONTROLS (TIDAK DIUBAH)
+    // PAUSE CONTROLS
     // =============================================
     function togglePause() {
         if (!gameActive || gameOverScreen.style.display === "flex") return;
@@ -872,7 +1753,7 @@
     }
     
     // =============================================
-    // GAME FUNCTIONS (TIDAK DIUBAH)
+    // GAME FUNCTIONS
     // =============================================
     highscoreElement.innerText = localBestScore;
     
@@ -906,7 +1787,18 @@
     }
     
     function initGame() {
-        console.log("Starting Hero Jump: City Nights");
+        console.log("Starting Hero Jump: City Nights!");
+        
+        // Reset power-ups
+        powerUps = [];
+        activePowerUps = {
+            shield: { active: false, timer: 0, duration: 10 },
+            doublePoints: { active: false, timer: 0, duration: 15 },
+            rocketShoot: { active: false, timer: 0, duration: 12 }
+        };
+        lastPowerUpTime = 0;
+        lastRocketShot = 0;
+        playerRockets = [];
         
         if (animId) {
             cancelAnimationFrame(animId);
@@ -1136,6 +2028,10 @@
         
         updatePlayerAnimation();
         
+        createPowerUp();
+        
+        updatePowerUps();
+        
         if (frameCount % 400 === 0) {
             createRocket();
         }
@@ -1160,11 +2056,11 @@
                 player.x + player.w > p.x && 
                 player.x < p.x + p.w && 
                 player.y + player.h > p.y && 
-                player.y + player.h < p.y + player.vy + 10) {
+                player.y + player.h < p.y + player.vy + 15) {
                 
                 player.y = p.y - player.h; 
                 player.vy = 0; 
-                player.vx = 0; 
+                player.vx = player.vx * 0.8;
                 player.onGround = true;
                 player.jumpCount = 0;
                 
@@ -1194,6 +2090,11 @@
                 
                 stars.splice(i, 1); 
                 let points = (Math.abs(player.vx) > 4) ? 20 : 10;
+                
+                if (activePowerUps.doublePoints.active) {
+                    points *= 2;
+                }
+                
                 score += points; 
                 
                 updateScoreDisplay();
@@ -1218,29 +2119,31 @@
         rockets.forEach((r, i) => {
             r.x -= 4;
             
-            if (player.x < r.x + r.w && 
-                player.x + player.w > r.x && 
-                player.y < r.y + r.h && 
-                player.y + player.h > r.y) {
-                
-                gameActive = false;
-                document.getElementById("death-msg").innerText = "HIT BY ROCKET! 🚀";
-                
-                for(let j = 0; j < 15; j++) {
-                    const angle = Math.random() * Math.PI * 2;
-                    const speed = Math.random() * 5 + 2;
-                    playerAnimation.trailParticles.push({
-                        x: player.x + player.w/2,
-                        y: player.y + player.h/2,
-                        size: Math.random() * 4 + 2,
-                        life: 30,
-                        vx: Math.cos(angle) * speed,
-                        vy: Math.sin(angle) * speed,
-                        color: '#e74c3c'
-                    });
+            if (!activePowerUps.shield.active) {
+                if (player.x < r.x + r.w && 
+                    player.x + player.w > r.x && 
+                    player.y < r.y + r.h && 
+                    player.y + player.h > r.y) {
+                    
+                    gameActive = false;
+                    document.getElementById("death-msg").innerText = "HIT BY ROCKET! 🚀";
+                    
+                    for(let j = 0; j < 15; j++) {
+                        const angle = Math.random() * Math.PI * 2;
+                        const speed = Math.random() * 5 + 2;
+                        playerAnimation.trailParticles.push({
+                            x: player.x + player.w/2,
+                            y: player.y + player.h/2,
+                            size: Math.random() * 4 + 2,
+                            life: 30,
+                            vx: Math.cos(angle) * speed,
+                            vy: Math.sin(angle) * speed,
+                            color: '#e74c3c'
+                        });
+                    }
+                    
+                    endGame();
                 }
-                
-                endGame();
             }
             
             if (r.x < -100) {
@@ -1259,6 +2162,8 @@
                 if(bs.x < 0) bs.x = canvas.width; 
             });
             rockets.forEach(r => r.x -= diff);
+            powerUps.forEach(p => p.x -= diff);
+            playerRockets.forEach(pr => pr.x -= diff);
         }
         
         if (platforms.length > 0 && platforms[platforms.length - 1].x < canvas.width + unit) {
@@ -1309,6 +2214,34 @@
             ctx.fill();
         });
         ctx.globalAlpha = 1;
+        
+        if (activePowerUps.shield.active) {
+            ctx.strokeStyle = `rgba(33, 150, 243, ${0.5 + Math.sin(frameCount * 0.2) * 0.3})`;
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.arc(0, 0, player.w/2 + 15, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            ctx.strokeStyle = `rgba(100, 181, 246, ${0.3 + Math.sin(frameCount * 0.3) * 0.2})`;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(0, 0, player.w/2 + 20, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+        
+        if (activePowerUps.doublePoints.active) {
+            ctx.fillStyle = `rgba(255, 152, 0, ${0.2 + Math.sin(frameCount * 0.2) * 0.1})`;
+            ctx.beginPath();
+            ctx.arc(0, 0, player.w/2 + 25, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        if (activePowerUps.rocketShoot.active) {
+            ctx.fillStyle = `rgba(255, 82, 82, ${0.2 + Math.sin(frameCount * 0.3) * 0.1})`;
+            ctx.beginPath();
+            ctx.arc(0, 0, player.w/2 + 30, 0, Math.PI * 2);
+            ctx.fill();
+        }
         
         ctx.fillStyle = "#3498db";
         ctx.fillRect(-player.w/2, -player.h/2, player.w, player.h);
@@ -1387,6 +2320,18 @@
             ctx.fillRect(r.x - 5, r.y + 5, 8, 10);
         });
         
+        playerRockets.forEach(r => {
+            ctx.fillStyle = r.color; 
+            ctx.fillRect(r.x, r.y, r.w, r.h);
+            ctx.fillStyle = "#FFD700"; 
+            ctx.fillRect(r.x + r.w, r.y + 5, 8, 5);
+            ctx.fillStyle = "#FF8A80"; 
+            ctx.fillRect(r.x + 5, r.y + 5, 8, 5);
+            
+            ctx.fillStyle = `rgba(255, 82, 82, ${0.5 + Math.sin(frameCount * 0.2) * 0.3})`;
+            ctx.fillRect(r.x - 3, r.y + 2, 6, 11);
+        });
+        
         stars.forEach(s => {
             ctx.save(); 
             ctx.translate(s.x, s.y + Math.sin(frameCount * 0.08 + s.rot) * 15);
@@ -1415,6 +2360,8 @@
             
             ctx.restore();
         });
+        
+        drawPowerUps();
         
         platforms.forEach(p => { 
             ctx.fillStyle = p.color; 
@@ -1500,7 +2447,7 @@
     }
     
     // =============================================
-    // EVENT LISTENERS (TIDAK DIUBAH)
+    // EVENT LISTENERS
     // =============================================
     document.getElementById("btn-sound").onclick = toggleSound;
     document.getElementById("btn-music").onclick = toggleMusic;
@@ -1514,6 +2461,13 @@
         e.preventDefault(); 
         initGame(); 
     };
+    
+    // Tombol GameMonetize (HANYA di pause dan game over)
+    document.getElementById("btn-pause-ads").onclick = showAd;
+    document.getElementById("btn-continue-with-ad").onclick = showRewardedAd;
+    document.getElementById("btn-reward-continue").onclick = showRewardedAd;
+    
+    // TIDAK ADA TOMBOL ADS DI START SCREEN - SUDAH DIHAPUS
     
     canvas.addEventListener("touchstart", (e) => { 
         e.preventDefault(); 
@@ -1595,19 +2549,18 @@
     resize();
     
     window.onload = function() {
-        console.log("Hero Jump: City Nights - Local Edition loaded!");
+        console.log("Hero Jump: City Nights loaded!");
         
-        // Set viewport height
         setViewportHeight();
-        
-        // Initialize local highscore system
         initLocalHighscore();
         
-        // Force redraw after a delay to ensure UI is visible
+        // Initialize GameMonetize SDK
+        initGameMonetize();
+        
         setTimeout(() => {
             setViewportHeight();
         }, 1000);
     };
 </script>
 </body>
-</html>
+</html>pp
