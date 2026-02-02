@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Hero Jump: City Nights 🎮</title>
     
-    <!-- GameMonetize SDK -->
-    <script src="https://s3.gmgn.com/html5games/v7/gmloader.js"></script>
-    
     <style>
+        /* Semua style CSS tetap sama seperti sebelumnya */
         .powerup-indicator {
             position: absolute;
             top: 20px;
@@ -76,7 +74,7 @@
             100% { transform: scale(2); opacity: 0; }
         }
         
-        /* STYLE LAMA */
+        /* STYLE LAMA - TETAP SAMA */
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
         :root {
             --vh: 1vh;
@@ -387,30 +385,30 @@
         @media (min-width: 769px) {
             .start-modal { 
                 background: white; 
-                padding: 25px; /* dikurangi dari 40px */
-                border-radius: 20px; /* dikurangi dari 30px */
+                padding: 25px;
+                border-radius: 20px; 
                 text-align: center; 
-                border: 6px solid #FF9800; /* dikurangi dari 8px */
+                border: 6px solid #FF9800; 
                 width: 85%; 
-                max-width: 400px; /* dikurangi dari 500px */
+                max-width: 400px;
                 animation: popIn 0.5s ease-out;
-                box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* dikurangi shadow */
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             }
             
             #btn-start-game { 
                 background: linear-gradient(145deg, #4CAF50, #2E7D32); 
                 color: white; 
                 border: none; 
-                padding: 15px 35px; /* dikurangi dari 20px 50px */
-                font-size: 20px; /* dikurangi dari 24px */
+                padding: 15px 35px;
+                font-size: 20px;
                 border-radius: 50px; 
                 cursor: pointer; 
                 font-weight: bold; 
-                margin-top: 20px; /* dikurangi dari 25px */
-                box-shadow: 0 6px 0 #1B5E20; /* dikurangi dari 8px */
+                margin-top: 20px;
+                box-shadow: 0 6px 0 #1B5E20;
                 transition: all 0.2s;
                 touch-action: manipulation;
-                min-width: 180px; /* dikurangi dari 200px */
+                min-width: 180px;
             }
             
             #btn-start-game:hover { 
@@ -423,28 +421,26 @@
                 box-shadow: 0 4px 0 #1B5E20; 
             }
             
-            /* Title lebih kecil */
             .start-modal h1 {
-                font-size: 36px !important; /* dikurangi dari 48px */
+                font-size: 36px !important;
                 margin: 0 0 8px 0 !important;
             }
             
             .start-modal h2 {
-                font-size: 24px !important; /* dikurangi dari 32px */
+                font-size: 24px !important;
                 margin: 0 0 15px 0 !important;
             }
             
-            /* Power-up section lebih kecil */
             .powerup-info-section {
                 background: rgb(240, 248, 255) !important;
-                border-radius: 12px !important; /* dikurangi dari 15px */
-                border: 2px dashed rgb(76, 175, 80) !important; /* dikurangi dari 3px */
-                margin: 15px 0 !important; /* dikurangi dari 20px */
-                padding: 15px !important; /* dikurangi dari 20px */
+                border-radius: 12px !important;
+                border: 2px dashed rgb(76, 175, 80) !important;
+                margin: 15px 0 !important;
+                padding: 15px !important;
             }
             
             .powerup-info-section p:first-child {
-                font-size: 16px !important; /* dikurangi dari 20px */
+                font-size: 16px !important;
                 margin-bottom: 12px !important;
             }
             
@@ -459,29 +455,28 @@
                 border-radius: 50%; 
                 color: white; 
                 display: flex; 
-                height: 35px !important; /* dikurangi dari 40px */
+                height: 35px !important;
                 justify-content: center; 
-                margin: 0px auto 8px !important; /* dikurangi margin */
-                width: 35px !important; /* dikurangi dari 40px */
-                font-size: 16px !important; /* dikurangi dari 18px */
+                margin: 0px auto 8px !important;
+                width: 35px !important;
+                font-size: 16px !important;
             }
             
             .powerup-icon-label {
-                font-size: 12px !important; /* dikurangi dari 14px */
+                font-size: 12px !important;
                 font-weight: bold;
             }
             
-            /* Controls section lebih kecil */
             .controls-section {
-                margin-top: 20px !important; /* dikurangi dari 25px */
-                padding: 15px !important; /* dikurangi dari 20px */
+                margin-top: 20px !important;
+                padding: 15px !important;
                 background: #f9f9f9;
-                border-radius: 12px; /* dikurangi dari 15px */
+                border-radius: 12px;
                 border: 2px solid #ddd;
             }
             
             .controls-section p:first-child {
-                font-size: 16px !important; /* dikurangi dari 18px */
+                font-size: 16px !important;
                 margin-bottom: 12px !important;
             }
             
@@ -489,13 +484,13 @@
                 display: inline-block; 
                 background: linear-gradient(145deg, #666, #333); 
                 color: white; 
-                padding: 4px 10px; /* dikurangi dari 5px 12px */
-                border-radius: 6px; /* dikurangi dari 8px */
-                margin: 0 6px; /* dikurangi dari 8px */
+                padding: 4px 10px;
+                border-radius: 6px;
+                margin: 0 6px;
                 font-family: 'Courier New', monospace;
-                font-size: 13px; /* dikurangi dari 14px */
-                box-shadow: 0 2px 0 #222; /* dikurangi dari 3px */
-                min-width: 35px; /* dikurangi dari 40px */
+                font-size: 13px;
+                box-shadow: 0 2px 0 #222;
+                min-width: 35px;
                 text-align: center;
             }
         }
@@ -701,8 +696,6 @@
             </div>
             
             <button id="btn-start-game">START GAME 🚀</button>
-            
-            <!-- TIDAK ADA TOMBOL ADS DI SINI - SUDAH DIHAPUS -->
         </div>
     </div>
 
@@ -749,14 +742,6 @@
                     <button id="btn-resume" style="background: linear-gradient(145deg, #4CAF50, #2E7D32); color: white; border: none; padding: 12px 25px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #2E7D32;">RESUME</button>
                     <button id="btn-restart" style="background: linear-gradient(145deg, #FF9800, #E65100); color: white; border: none; padding: 12px 25px; font-size: 18px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #E65100;">RESTART</button>
                 </div>
-                
-                <!-- Tombol GameMonetize di Pause Screen -->
-                <div style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed #ddd;">
-                    <p style="color: #666; font-size: 14px; margin-bottom: 10px;">Support the game:</p>
-                    <button id="btn-pause-ads" style="background: linear-gradient(145deg, #FF9800, #E65100); color: white; border: none; padding: 10px 20px; font-size: 14px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #E65100; width: 100%;">
-                        Watch Ad
-                    </button>
-                </div>
             </div>
         </div>
         
@@ -771,20 +756,8 @@
                     🏆 Highscore: <span class="hs-highlight" id="final-highscore-value">0</span>
                 </div>
                 
+                <!-- Play Again Button SIMPLE -->
                 <button id="btn-play-again">PLAY AGAIN 🚀</button>
-                
-                <!-- Tombol GameMonetize di Game Over -->
-                <div style="margin-top: 20px; padding-top: 20px; border-top: 2px dashed #ddd;">
-                    <p style="color: #666; font-size: 14px; margin-bottom: 10px;">Continue with bonus?</p>
-                    <div style="display: flex; gap: 10px; justify-content: center;">
-                        <button id="btn-continue-with-ad" style="background: linear-gradient(145deg, #4CAF50, #2E7D32); color: white; border: none; padding: 12px 20px; font-size: 14px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #2E7D32; flex: 1;">
-                            Watch Ad to Continue
-                        </button>
-                        <button id="btn-reward-continue" style="background: linear-gradient(145deg, #2196F3, #0D47A1); color: white; border: none; padding: 12px 20px; font-size: 14px; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #0D47A1; flex: 1;">
-                            Get 2× Points
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
         
@@ -794,223 +767,43 @@
 
 <script>
     // =============================================
-    // GAMEMONETIZE SDK INITIALIZATION
+    // GAMEMONETIZE SDK INTEGRATION - AMAN TIDAK KENA BAN
     // =============================================
-    let gameMonetizeInstance = null;
-    let gameID = "bjmmlm9ug876ddnboospf4cambxdvcbx";
-    
-    async function initGameMonetize() {
-        console.log("Initializing GameMonetize SDK...");
-        
-        try {
-            // Wait for SDK to load
-            if (typeof gmloader === 'undefined') {
-                console.warn("GameMonetize SDK not loaded, retrying...");
-                setTimeout(initGameMonetize, 1000);
-                return;
-            }
-            
-            // Initialize SDK
-            gameMonetizeInstance = gmloader(gameID, {
-                onEvent: function(event) {
-                    console.log("GameMonetize Event:", event);
-                    
-                    switch(event.name) {
-                        case "SDK_READY":
-                            console.log("GameMonetize SDK Ready!");
-                            break;
-                            
-                        case "SDK_ERROR":
-                            console.error("GameMonetize SDK Error:", event.data);
-                            break;
-                            
-                        case "AD_STARTED":
-                            console.log("Ad started");
-                            isPaused = true;
-                            showAdOverlay(true);
-                            break;
-                            
-                        case "AD_FINISHED":
-                            console.log("Ad finished");
-                            isPaused = false;
-                            showAdOverlay(false);
-                            break;
-                            
-                        case "AD_ERROR":
-                            console.error("Ad error:", event.data);
-                            showAdOverlay(false);
-                            alert("Ad failed to load. Please try again.");
-                            break;
-                            
-                        case "REWARDED_WATCH_COMPLETE":
-                            console.log("Rewarded ad completed");
-                            handleRewardedComplete(event.data);
-                            break;
+    window.SDK_OPTIONS = {
+        gameId: "bjmmlm9ug876ddnboospf4cambxdvcbx",
+        onEvent: function (event) {
+            switch (event.name) {
+                case "SDK_GAME_PAUSE":
+                    // Hanya mute audio background music saja
+                    // TIDAK pause game - ini penting untuk compliance
+                    if (musicEnabled) {
+                        clearTimeout(musicLoopId);
+                        console.log("Background music muted for ad");
                     }
-                }
-            });
-            
-            console.log("GameMonetize initialized successfully");
-            
-        } catch (error) {
-            console.error("Failed to initialize GameMonetize:", error);
-        }
-    }
-    
-    function showAdOverlay(show) {
-        const overlay = document.getElementById('ad-overlay');
-        if (show) {
-            // Create overlay if it doesn't exist
-            if (!overlay) {
-                const newOverlay = document.createElement('div');
-                newOverlay.id = 'ad-overlay';
-                newOverlay.style.position = 'absolute';
-                newOverlay.style.top = '0';
-                newOverlay.style.left = '0';
-                newOverlay.style.width = '100%';
-                newOverlay.style.height = '100%';
-                newOverlay.style.background = 'rgba(0,0,0,0.8)';
-                newOverlay.style.zIndex = '9999';
-                newOverlay.style.display = 'flex';
-                newOverlay.style.flexDirection = 'column';
-                newOverlay.style.justifyContent = 'center';
-                newOverlay.style.alignItems = 'center';
-                newOverlay.style.color = 'white';
-                newOverlay.innerHTML = `
-                    <div style="text-align: center; padding: 20px;">
-                        <div class="loader" style="border-color: #FF9800;"></div>
-                        <h2>Ad is Loading...</h2>
-                        <p>Please wait</p>
-                    </div>
-                `;
-                wrapper.appendChild(newOverlay);
-            } else {
-                overlay.style.display = 'flex';
-            }
-        } else {
-            if (overlay) {
-                overlay.style.display = 'none';
+                    break;
+                    
+                case "SDK_GAME_START":
+                    // Restart music setelah iklan selesai
+                    if (musicEnabled && gameActive && !isPaused) {
+                        playBGM();
+                        console.log("Background music resumed after ad");
+                    }
+                    break;
+                    
+                case "SDK_READY":
+                    console.log("GameMonetize SDK ready!");
+                    break;
+                    
+                case "SDK_GAME_START":
+                    // Log untuk interstitial ads
+                    console.log("Interstitial ad event");
+                    break;
             }
         }
-    }
-    
-    function showAd() {
-        if (!gameMonetizeInstance) {
-            console.warn("GameMonetize not initialized");
-            alert("Ad system not ready yet. Please wait.");
-            return;
-        }
-        
-        try {
-            gameMonetizeInstance.showAd();
-        } catch (error) {
-            console.error("Error showing ad:", error);
-            alert("Failed to show ad. Please try again.");
-        }
-    }
-    
-    function showRewardedAd() {
-        if (!gameMonetizeInstance) {
-            console.warn("GameMonetize not initialized");
-            alert("Rewarded ad system not ready yet. Please wait.");
-            return;
-        }
-        
-        try {
-            gameMonetizeInstance.showRewardedAd();
-        } catch (error) {
-            console.error("Error showing rewarded ad:", error);
-            alert("Failed to load rewarded ad. Please try again.");
-        }
-    }
-    
-    function handleRewardedComplete(data) {
-        console.log("Rewarded ad completed with data:", data);
-        
-        // Berikan reward kepada pemain
-        if (gameActive) {
-            // Aktifkan double points selama 30 detik
-            activePowerUps.doublePoints.active = true;
-            activePowerUps.doublePoints.timer = 30;
-            
-            // Tampilkan notifikasi
-            showRewardNotification("2× POINTS ACTIVATED FOR 30 SECONDS!");
-            
-            // Tambahkan 50 poin bonus
-            score += 50;
-            updateScoreDisplay();
-            showScorePop(canvas.width/2, canvas.height/2, 50);
-            
-            if (soundEnabled) playSfx(800, 'sine', 0.3, 0.2);
-        } else if (gameOverScreen.style.display === "flex") {
-            // Jika di game over screen, beri kesempatan lanjut
-            continueAfterGameOver();
-        }
-    }
-    
-    function showRewardNotification(message) {
-        const notif = document.createElement('div');
-        notif.style.position = 'absolute';
-        notif.style.top = '30%';
-        notif.style.left = '50%';
-        notif.style.transform = 'translate(-50%, -50%)';
-        notif.style.color = '#4CAF50';
-        notif.style.fontSize = '24px';
-        notif.style.fontWeight = 'bold';
-        notif.style.textShadow = '2px 2px 0px rgba(0,0,0,0.5)';
-        notif.style.zIndex = '9999';
-        notif.style.pointerEvents = 'none';
-        notif.style.textAlign = 'center';
-        notif.style.background = 'rgba(0,0,0,0.7)';
-        notif.style.padding = '15px 25px';
-        notif.style.borderRadius = '15px';
-        notif.style.border = '3px solid #4CAF50';
-        notif.innerText = message;
-        notif.style.animation = 'floatUp 2s ease-out forwards';
-        
-        wrapper.appendChild(notif);
-        
-        setTimeout(() => {
-            if (notif.parentNode) {
-                notif.parentNode.removeChild(notif);
-            }
-        }, 2000);
-    }
-    
-    function continueAfterGameOver() {
-        // Lanjutkan permainan dengan 50% score
-        const continueScore = Math.floor(score * 0.5);
-        score = continueScore;
-        
-        // Reset game state
-        gameActive = true;
-        gameOverScreen.style.display = "none";
-        
-        // Reset player position
-        if (player) {
-            player.x = canvas.width * 0.15;
-            player.y = canvas.height - (unit * 4);
-            player.vx = 0;
-            player.vy = 0;
-            player.onGround = false;
-        }
-        
-        // Tampilkan notifikasi
-        showRewardNotification(`CONTINUE WITH ${continueScore} POINTS!`);
-        
-        // Update score display
-        updateScoreDisplay();
-        
-        // Mulai game loop kembali
-        gameLoop();
-        
-        if (musicEnabled) {
-            playBGM();
-        }
-    }
-    
+    };
+
     // =============================================
-    // POWER-UP SYSTEM - VERSI SANGAT JARANG (0.5%)
+    // POWER-UP SYSTEM
     // =============================================
     let powerUps = [];
     let activePowerUps = {
@@ -2447,7 +2240,7 @@
     }
     
     // =============================================
-    // EVENT LISTENERS
+    // EVENT LISTENERS UTAMA
     // =============================================
     document.getElementById("btn-sound").onclick = toggleSound;
     document.getElementById("btn-music").onclick = toggleMusic;
@@ -2459,15 +2252,9 @@
     };
     document.getElementById("btn-play-again").onclick = (e) => { 
         e.preventDefault(); 
+        e.stopPropagation();
         initGame(); 
     };
-    
-    // Tombol GameMonetize (HANYA di pause dan game over)
-    document.getElementById("btn-pause-ads").onclick = showAd;
-    document.getElementById("btn-continue-with-ad").onclick = showRewardedAd;
-    document.getElementById("btn-reward-continue").onclick = showRewardedAd;
-    
-    // TIDAK ADA TOMBOL ADS DI START SCREEN - SUDAH DIHAPUS
     
     canvas.addEventListener("touchstart", (e) => { 
         e.preventDefault(); 
@@ -2550,17 +2337,50 @@
     
     window.onload = function() {
         console.log("Hero Jump: City Nights loaded!");
+        console.log("🎮 VERSI WITH SDK GAMEMONETIZE - AMAN TIDAK KENA BAN");
         
         setViewportHeight();
         initLocalHighscore();
         
-        // Initialize GameMonetize SDK
-        initGameMonetize();
-        
-        setTimeout(() => {
-            setViewportHeight();
-        }, 1000);
+        console.log("Game ready! SDK GameMonetize integrated safely.");
     };
 </script>
+
+<!-- ============================================= -->
+<!-- SDK GAMEMONETIZE YANG AMAN - TIDAK AUTO PAUSE -->
+<!-- ============================================= -->
+<script type="text/javascript">
+   window.SDK_OPTIONS = {
+      gameId: "bjmmlm9ug876ddnboospf4cambxdvcbx",
+      onEvent: function (a) {
+         switch (a.name) {
+            case "SDK_GAME_PAUSE":
+               // Hanya mute background music saja, TIDAK pause game
+               if (musicEnabled) {
+                   clearTimeout(musicLoopId);
+                   console.log("Background music muted for ad");
+               }
+               break;
+            case "SDK_GAME_START":
+               // Restart music jika game masih berjalan
+               if (musicEnabled && gameActive && !isPaused) {
+                   playBGM();
+                   console.log("Background music resumed after ad");
+               }
+               break;
+            case "SDK_READY":
+               console.log("GameMonetize SDK ready");
+               break;
+            case "SDK_GAME_START":
+               console.log("Interstitial ad event");
+               break;
+         }
+      }
+   };
+(function (a, b, c) {
+   var d = a.getElementsByTagName(b)[0];
+   a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "https://api.gamemonetize.com/sdk.js", d.parentNode.insertBefore(a, d))
+})(document, "script", "gamemonetize-sdk"); 
+</script>
 </body>
-</html>pp
+</html>
