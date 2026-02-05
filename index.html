@@ -767,42 +767,6 @@
 
 <script>
     // =============================================
-    // GAMEMONETIZE SDK INTEGRATION - AMAN TIDAK KENA BAN
-    // =============================================
-    window.SDK_OPTIONS = {
-        gameId: "bjmmlm9ug876ddnboospf4cambxdvcbx",
-        onEvent: function (event) {
-            switch (event.name) {
-                case "SDK_GAME_PAUSE":
-                    // Hanya mute audio background music saja
-                    // TIDAK pause game - ini penting untuk compliance
-                    if (musicEnabled) {
-                        clearTimeout(musicLoopId);
-                        console.log("Background music muted for ad");
-                    }
-                    break;
-                    
-                case "SDK_GAME_START":
-                    // Restart music setelah iklan selesai
-                    if (musicEnabled && gameActive && !isPaused) {
-                        playBGM();
-                        console.log("Background music resumed after ad");
-                    }
-                    break;
-                    
-                case "SDK_READY":
-                    console.log("GameMonetize SDK ready!");
-                    break;
-                    
-                case "SDK_GAME_START":
-                    // Log untuk interstitial ads
-                    console.log("Interstitial ad event");
-                    break;
-            }
-        }
-    };
-
-    // =============================================
     // POWER-UP SYSTEM
     // =============================================
     let powerUps = [];
@@ -2337,50 +2301,13 @@
     
     window.onload = function() {
         console.log("Hero Jump: City Nights loaded!");
-        console.log("🎮 VERSI WITH SDK GAMEMONETIZE - AMAN TIDAK KENA BAN");
+        console.log("🎮 VERSI CLEAN - No Ads");
         
         setViewportHeight();
         initLocalHighscore();
         
-        console.log("Game ready! SDK GameMonetize integrated safely.");
+        console.log("Game ready! Clean version without ads.");
     };
-</script>
-
-<!-- ============================================= -->
-<!-- SDK GAMEMONETIZE YANG AMAN - TIDAK AUTO PAUSE -->
-<!-- ============================================= -->
-<script type="text/javascript">
-   window.SDK_OPTIONS = {
-      gameId: "bjmmlm9ug876ddnboospf4cambxdvcbx",
-      onEvent: function (a) {
-         switch (a.name) {
-            case "SDK_GAME_PAUSE":
-               // Hanya mute background music saja, TIDAK pause game
-               if (musicEnabled) {
-                   clearTimeout(musicLoopId);
-                   console.log("Background music muted for ad");
-               }
-               break;
-            case "SDK_GAME_START":
-               // Restart music jika game masih berjalan
-               if (musicEnabled && gameActive && !isPaused) {
-                   playBGM();
-                   console.log("Background music resumed after ad");
-               }
-               break;
-            case "SDK_READY":
-               console.log("GameMonetize SDK ready");
-               break;
-            case "SDK_GAME_START":
-               console.log("Interstitial ad event");
-               break;
-         }
-      }
-   };
-(function (a, b, c) {
-   var d = a.getElementsByTagName(b)[0];
-   a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "https://api.gamemonetize.com/sdk.js", d.parentNode.insertBefore(a, d))
-})(document, "script", "gamemonetize-sdk"); 
 </script>
 </body>
 </html>
